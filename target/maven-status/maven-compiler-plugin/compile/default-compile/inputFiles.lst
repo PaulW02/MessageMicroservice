@@ -1,9 +1,0 @@
-/Users/paula/Desktop/KTH/Fullstack/Lab1/MessageMicroservice/src/main/java/com/example/messagemicroservice/entities/Message.java
-/Users/paula/Desktop/KTH/Fullstack/Lab1/MessageMicroservice/src/main/java/com/example/messagemicroservice/repositories/MessageRepository.java
-/Users/paula/Desktop/KTH/Fullstack/Lab1/MessageMicroservice/src/main/java/com/example/messagemicroservice/apis/LoginMicroserviceClient.java
-/Users/paula/Desktop/KTH/Fullstack/Lab1/MessageMicroservice/src/main/java/com/example/messagemicroservice/MessageMicroserviceApplication.java
-/Users/paula/Desktop/KTH/Fullstack/Lab1/MessageMicroservice/src/main/java/com/example/messagemicroservice/services/MessageService.java
-/Users/paula/Desktop/KTH/Fullstack/Lab1/MessageMicroservice/src/main/java/com/example/messagemicroservice/dtos/MessageDTO.java
-/Users/paula/Desktop/KTH/Fullstack/Lab1/MessageMicroservice/src/main/java/com/example/messagemicroservice/controllers/MessageController.java
-/Users/paula/Desktop/KTH/Fullstack/Lab1/MessageMicroservice/src/main/java/com/example/messagemicroservice/services/MessageServiceImpl.java
-/Users/paula/Desktop/KTH/Fullstack/Lab1/MessageMicroservice/src/main/java/com/example/messagemicroservice/dtos/CreateMessageDTO.java

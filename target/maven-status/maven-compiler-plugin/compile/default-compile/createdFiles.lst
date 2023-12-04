@@ -1,9 +1,0 @@
-com/example/messagemicroservice/repositories/MessageRepository.class
-com/example/messagemicroservice/MessageMicroserviceApplication.class
-com/example/messagemicroservice/dtos/MessageDTO.class
-com/example/messagemicroservice/controllers/MessageController.class
-com/example/messagemicroservice/services/MessageServiceImpl.class
-com/example/messagemicroservice/dtos/CreateMessageDTO.class
-com/example/messagemicroservice/services/MessageService.class
-com/example/messagemicroservice/entities/Message.class
-com/example/messagemicroservice/apis/LoginMicroserviceClient.class
