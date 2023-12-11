@@ -8,15 +8,24 @@ public class MessageDTO {
     private Long sender;
     private LocalDate date;
     private String info;
+    private String otherUserName;
 
-    public MessageDTO(Long id, Long receiver, Long sender, LocalDate date,String info) {
+    public MessageDTO(Long id, Long receiver, Long sender, LocalDate date, String info) {
         this.id = id;
         this.receiver = receiver;
         this.sender = sender;
         this.date = date;
-        this.info    = info;
+        this.info = info;
     }
 
+    public MessageDTO(Long id, Long receiver, Long sender, LocalDate date, String info, String otherUserName) {
+        this.id = id;
+        this.receiver = receiver;
+        this.sender = sender;
+        this.date = date;
+        this.info = info;
+        this.otherUserName = otherUserName;
+    }
 
     public String getInfo() {
         return info;
@@ -56,6 +65,14 @@ public class MessageDTO {
 
     public void setSender(Long sender) {
         this.sender = sender;
+    }
+
+    public String getOtherUserName() {
+        return otherUserName;
+    }
+
+    public void setOtherUserName(String otherUserName) {
+        this.otherUserName = otherUserName;
     }
 }
 

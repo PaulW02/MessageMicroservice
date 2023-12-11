@@ -1,3 +1,5 @@
+com/example/messagemicroservice/services/MessageServiceImpl$1.class
+com/example/messagemicroservice/WebSecurityConfig.class
 com/example/messagemicroservice/repositories/MessageRepository.class
 com/example/messagemicroservice/MessageMicroserviceApplication.class
 com/example/messagemicroservice/dtos/MessageDTO.class

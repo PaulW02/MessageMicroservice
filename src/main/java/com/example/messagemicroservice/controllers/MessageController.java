@@ -6,8 +6,10 @@ import com.example.messagemicroservice.dtos.MessageDTO;
 import com.example.messagemicroservice.entities.Message;
 import com.example.messagemicroservice.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,12 +23,12 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-/*    @Autowired
-    private LoginMicroserviceClient loginMicroserviceClient;
+    private final WebClient userClient;
 
     @Autowired
-    private UserService userService;
-*/
+    public MessageController(WebClient.Builder webClientBuilder) {
+        this.userClient = webClientBuilder.baseUrl("http://login-microservice-service:5001/user").build();
+    }
 
     @GetMapping
     public ResponseEntity<List<MessageDTO>> getAllMessages() {
@@ -39,12 +41,20 @@ public class MessageController {
 
     @GetMapping("/conversations/{userId}")
     public ResponseEntity<Map<Long, List<MessageDTO>>> getMessagesByUser(@PathVariable Long userId) {
-/*        if (loginMicroserviceClient.doesUserExist(userId)) {
-            return ResponseEntity.ok(messageService.getMessagesByUser(userId));
-        }*/
-        return null;
-    }
+        // Make a GET request to check if the user exists
+        Long userExists = userClient.get()
+                .uri("/checkUser/{userId}", userId)
+                .retrieve()
+                .bodyToMono(Long.class)
+                .block();
 
+        // If the user exists, proceed with fetching messages
+        if (userExists != null && userExists > 0) {
+            return ResponseEntity.ok(messageService.getMessagesByUser(userId));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @GetMapping("/{id}")
     public ResponseEntity<MessageDTO> getMessageById(@PathVariable Long id) {
         Message message = messageService.getMessageById(id);
