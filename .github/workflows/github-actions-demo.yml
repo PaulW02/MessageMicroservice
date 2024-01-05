@@ -12,7 +12,7 @@ jobs:
         with:
           registry: registry.cloud.cbh.kth.se
           username: robot$deploy-c819e8dc-11fe-4c30-b2d5-9f4acfe86aa0+message-microservice
-          password: wm1JnbsBTl0fiywfArle5GwhlF1m65dz
+          password: c9hH9N3NRn452BnbTIGngo3wcNd9aQh9
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
