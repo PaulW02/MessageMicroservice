@@ -16,6 +16,8 @@ ENV HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
 
 COPY src ./src
 
+EXPOSE 5002
+
 CMD ["./mvnw", "spring-boot:run"]
 
 
