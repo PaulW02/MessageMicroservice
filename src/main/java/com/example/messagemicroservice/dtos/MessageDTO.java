@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 public class MessageDTO {
     private Long id;
-    private Long receiver;
-    private Long sender;
+    private String receiver;
+    private String sender;
     private LocalDate date;
     private String info;
     private String otherUserName;
 
-    public MessageDTO(Long id, Long receiver, Long sender, LocalDate date, String info) {
+    public MessageDTO(Long id, String receiver, String sender, LocalDate date, String info) {
         this.id = id;
         this.receiver = receiver;
         this.sender = sender;
@@ -18,7 +18,7 @@ public class MessageDTO {
         this.info = info;
     }
 
-    public MessageDTO(Long id, Long receiver, Long sender, LocalDate date, String info, String otherUserName) {
+    public MessageDTO(Long id, String receiver, String sender, LocalDate date, String info, String otherUserName) {
         this.id = id;
         this.receiver = receiver;
         this.sender = sender;
@@ -51,19 +51,19 @@ public class MessageDTO {
         this.id = id;
     }
 
-    public Long getReceiver() {
+    public String getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(Long receiver) {
+    public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
 
-    public Long getSender() {
+    public String getSender() {
         return sender;
     }
 
-    public void setSender(Long sender) {
+    public void setSender(String sender) {
         this.sender = sender;
     }
 

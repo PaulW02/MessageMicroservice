@@ -14,14 +14,14 @@ public class Message
     private Long id;
 
     @Column(name = "sender_id", nullable = false)
-    private Long receiver;
+    private String receiver;
 
     @Column(name = "receiver_id", nullable = false)
-    private Long sender;
+    private String sender;
 
     private LocalDate date;
     private String info;
-    public Message(Long id, Long receiver, Long sender, LocalDate date, String info) {
+    public Message(Long id, String receiver, String sender, LocalDate date, String info) {
         this.id = id;
         this.receiver = receiver;
         this.sender = sender;
@@ -30,7 +30,7 @@ public class Message
     }
 
 
-    public Message(Long id, Long receiver, Long sender, String info) {
+    public Message(Long id, String receiver, String sender, String info) {
         this.id = id;
         this.receiver = receiver;
         this.sender = sender;
@@ -41,7 +41,7 @@ public class Message
 
     }
 
-    public Message(String info, LocalDate date, Long sender, Long receiver) {
+    public Message(String info, LocalDate date, String sender, String receiver) {
         this.info = info;
         this.date = date;
         this.sender = sender;
@@ -57,19 +57,19 @@ public class Message
         this.info = info;
     }
 
-    public Long getReceiver() {
+    public String getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(Long receiver) {
+    public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
 
-    public Long getSender() {
+    public String getSender() {
         return sender;
     }
 
-    public void setSender(Long sender) {
+    public void setSender(String sender) {
         this.sender = sender;
     }
 

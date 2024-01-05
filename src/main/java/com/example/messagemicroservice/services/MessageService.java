@@ -14,7 +14,7 @@ public interface MessageService
     Message updateMessage(Long id, Message updatedMessage);
     boolean deleteMessage(Long id);
 
-    Message createMessage(String info, LocalDate date, Long senderId, Long receiverId);
+    Message createMessage(String info, LocalDate date, String senderId, String receiverId);
 
-    Map<Long, List<MessageDTO>> getMessagesByUser(Long userId);
+    Map<String, List<MessageDTO>> getMessagesByUser(String userId);
 }

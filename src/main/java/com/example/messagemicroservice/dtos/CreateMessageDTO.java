@@ -3,30 +3,30 @@ package com.example.messagemicroservice.dtos;
 import java.time.LocalDate;
 
 public class CreateMessageDTO {
-    private Long receiverId;
-    private Long senderId;
+    private String receiverId;
+    private String senderId;
     private String info;
 
-    public CreateMessageDTO(Long receiverId, Long senderId, LocalDate date, String info) {
+    public CreateMessageDTO(String receiverId, String senderId, LocalDate date, String info) {
         this.receiverId = receiverId;
         this.senderId = senderId;
         this.info = info;
     }
 
 
-    public Long getReceiverId() {
+    public String getReceiverId() {
         return receiverId;
     }
 
-    public void setReceiverId(Long receiverId) {
+    public void setReceiverId(String receiverId) {
         this.receiverId = receiverId;
     }
 
-    public Long getSenderId() {
+    public String getSenderId() {
         return senderId;
     }
 
-    public void setSenderId(Long senderId) {
+    public void setSenderId(String senderId) {
         this.senderId = senderId;
     }
 

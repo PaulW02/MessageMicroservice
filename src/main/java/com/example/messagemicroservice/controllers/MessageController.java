@@ -40,16 +40,16 @@ public class MessageController {
     }
 
     @GetMapping("/conversations/{userId}")
-    public ResponseEntity<Map<Long, List<MessageDTO>>> getMessagesByUser(@PathVariable Long userId) {
+    public ResponseEntity<Map<String, List<MessageDTO>>> getMessagesByUser(@PathVariable String userId) {
         // Make a GET request to check if the user exists
-        Long userExists = userClient.get()
+        String userExists = userClient.get()
                 .uri("/checkUser/{userId}", userId)
                 .retrieve()
-                .bodyToMono(Long.class)
+                .bodyToMono(String.class)
                 .block();
 
         // If the user exists, proceed with fetching messages
-        if (userExists != null && userExists > 0) {
+        if (userExists != null && !userExists.isEmpty()) {
             return ResponseEntity.ok(messageService.getMessagesByUser(userId));
         } else {
             return ResponseEntity.notFound().build();

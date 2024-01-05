@@ -24,24 +24,24 @@ public class MessageServiceImpl implements MessageService {
         this.userClient = webClientBuilder.baseUrl("http://login-microservice-service:5001/user").build();
     }
 
-    public Map<Long, List<MessageDTO>> getMessagesByUser(Long userId) {
+    public Map<String, List<MessageDTO>> getMessagesByUser(String userId) {
         // Retrieve messages from the repository based on the user ID
         List<Message> messages = messageRepository.findAllBySenderOrReceiver(userId, userId);
 
         // Collect unique user IDs from messages
-        Set<Long> userIds = new HashSet<>();
+        Set<String> userIds = new HashSet<>();
         for (Message message : messages) {
             userIds.add(getOtherUserId(userId, message));
         }
 
         // Fetch user details in bulk
-        Map<Long, String> userNameById = fetchUserNames(new ArrayList<>(userIds));
+        Map<String, String> userNameById = fetchUserNames(new ArrayList<>(userIds));
 
         // Organize messages into a map where the key is the other user's ID
-        Map<Long, List<MessageDTO>> messagesByUser = new HashMap<>();
+        Map<String, List<MessageDTO>> messagesByUser = new HashMap<>();
 
         for (Message message : messages) {
-            Long otherUserId = getOtherUserId(userId, message);
+            String otherUserId = getOtherUserId(userId, message);
             String otherUserName = userNameById.get(otherUserId);
 
             messagesByUser.computeIfAbsent(otherUserId, k -> new ArrayList<>())
@@ -51,7 +51,7 @@ public class MessageServiceImpl implements MessageService {
         return messagesByUser;
     }
 
-    private Map<Long, String> fetchUserNames(List<Long> userIds) {
+    private Map<String, String> fetchUserNames(List<String> userIds) {
         String userIdsParam = userIds.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(","));
@@ -61,7 +61,7 @@ public class MessageServiceImpl implements MessageService {
         return userClient.get()
                 .uri(uri)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<Map<Long, String>>() {})
+                .bodyToMono(new ParameterizedTypeReference<Map<String, String>>() {})
                 .block();
     }
     private MessageDTO convertToDTO(Message message) {
@@ -74,7 +74,7 @@ public class MessageServiceImpl implements MessageService {
         return dto;
     }
 
-    private Long getOtherUserId(Long userId, Message message) {
+    private String getOtherUserId(String userId, Message message) {
         // Determine the ID of the other user in the conversation
         if (userId.equals(message.getSender())) {
             return message.getReceiver();
@@ -83,7 +83,7 @@ public class MessageServiceImpl implements MessageService {
         }
     }
 
-    public Message createMessage(String info, LocalDate date, Long senderId, Long receiverId) {
+    public Message createMessage(String info, LocalDate date, String senderId, String receiverId) {
         if (info != null && date != null && senderId != null && receiverId != null) {
             Message createdMessage = new Message(info, date, senderId, receiverId);
             return messageRepository.save(createdMessage);
